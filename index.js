@@ -1,15 +1,15 @@
-import Screen1 from './src/UI/screen1'
 import EmptyView from './src/UI/emptyView'
 import {AppRegistry} from 'react-native';
-import {
-  View,
-} from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import Screen1Builder from './src/screen1Builder'
+import Screen2Builder from './src/screen2Builder'
+import Screen3Builder from './src/screen3Builder'
 
 AppRegistry.registerComponent('main', () => EmptyView);
 
-import { Navigation } from 'react-native-navigation';
-
-Navigation.registerComponent('Screen1', () => Screen1);
+Navigation.registerComponent('Screen1', () => Screen1Builder);
+Navigation.registerComponent('Screen2', () => Screen2Builder);
+Navigation.registerComponent('Screen3', () => Screen3Builder);
 
 Navigation.events().registerAppLaunchedListener(async () => {
     Navigation.setRoot({

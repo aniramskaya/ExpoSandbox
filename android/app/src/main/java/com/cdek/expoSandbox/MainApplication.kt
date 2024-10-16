@@ -2,6 +2,7 @@ package com.cdek.expoSandbox
 
 import android.app.Application
 import android.content.res.Configuration
+import com.cdek.expoSandbox.UI.Screen1Component
 
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
@@ -47,6 +48,11 @@ class MainApplication : NavigationApplication() {
       // If you opted-in for the New Architecture, we load the native entry point for this app.
       load()
     }
+
+    registerExternalComponent("NativeScreen1") { activity, instanceManagr, props ->
+      return@registerExternalComponent Screen1Component(activity, props)
+    }
+
     ApplicationLifecycleDispatcher.onApplicationCreate(this)
   }
 
