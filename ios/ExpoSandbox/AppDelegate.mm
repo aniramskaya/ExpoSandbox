@@ -4,11 +4,15 @@
 #import <React/RCTLinkingManager.h>
 #import <ReactCommon/RCTTurboModuleManager.h>
 #import <Foundation/Foundation.h>
+#import <ReactNativeNavigation/ReactNativeNavigation.h>
 
 @interface EXAppDelegateWrapper () <RCTTurboModuleManagerDelegate>
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
+  UIWindow * _defaultWindow;
+  id _rnnBridgeManager;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -64,6 +68,44 @@
   return [super application:application didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
 }
 
+//[[NSNotificationCenter defaultCenter] addObserver:self
+//                                         selector:@selector(onJavaScriptLoaded)
+//                                             name:RCTJavaScriptDidLoadNotification
+//                                           object:nil];
+
+- (UIView *)createRootViewWithBridge:(RCTBridge *)bridge
+                          moduleName:(NSString *)moduleName
+                           initProps:(NSDictionary *)initProps
+{
+  _defaultWindow = self.window;
+  id bridgeManager = [ReactNativeNavigation valueForKeyPath:@"sharedInstance.bridgeManager"];
+  if (bridgeManager != nil) {
+     [[NSNotificationCenter defaultCenter] removeObserver:bridgeManager name:@"RCTJavaScriptDidLoadNotification" object:nil];
+    _rnnBridgeManager = bridgeManager;
+  }
+  UIView *rootView = [[UIView alloc] init];
+  rootView.backgroundColor = [UIColor systemBackgroundColor];
+  return rootView;
+}
+
+- (UIViewController*)createRootViewController {
+  if (_defaultWindow != nil) {
+    self.window = _defaultWindow;
+    _defaultWindow = nil;
+  }
+  return [[UIViewController alloc] init];
+}
+
+- (void)setRootView:(UIView *)rootView toRootViewController:(UIViewController *)rootViewController {
+  if (_rnnBridgeManager != nil) {
+    [[NSNotificationCenter defaultCenter] addObserver:_rnnBridgeManager
+                                             selector:NSSelectorFromString(@"onJavaScriptLoaded")
+                                                 name:@"RCTJavaScriptDidLoadNotification"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"RCTJavaScriptDidLoadNotification" object:nil];
+  }
+}
+
 - (RCTRootViewFactory *)createRCTRootViewFactory
 {
   __weak __typeof(self) weakSelf = self;
@@ -99,13 +141,13 @@
                                               configuration:configuration 
                                  turboModuleManagerDelegate:self
                                       extraModulesForBridge:^NSArray<id<RCTBridgeModule>> * (RCTBridge* bridge) {
-        return @[];
+        return [ReactNativeNavigation extraModulesForBridge:bridge];
       }
   ];
 }
 @end
 
-@implementation CDEKRootViewFactory: EXReactRootViewFactory {
+@implementation CDEKRootViewFactory {
   NSArray<id<RCTBridgeModule>> * (^_extraModulesForBridgeBlock)(RCTBridge*);
 }
 
