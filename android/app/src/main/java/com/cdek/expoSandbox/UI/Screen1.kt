@@ -1,6 +1,8 @@
 package com.cdek.expoSandbox.UI
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +39,41 @@ class Screen1 : Fragment() {
 
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("Fragment", "Screen1 started")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("Fragment", "Screen1 resumed")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("Fragment", "Screen1 paused")
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.d("Fragment", "Screen1 attached")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d("Fragment", "Screen1 detached")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("Fragment", "Screen1 view destroyed")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("Fragment", "Screen1 destroyed")
     }
 }
 

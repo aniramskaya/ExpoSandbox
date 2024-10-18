@@ -52,6 +52,7 @@ const navigationTestView = (
           }}>
             <Text style={styles.sectionTitle}>MainApp</Text>
             <Text style={styles.sectionDescription}>React { name }</Text>
+            <Text style={styles.sectionDescription}>Expo updates Android test</Text>
             <View style = {{margin: 40}}>
               <Button title='Push react screen' onPress={ () => { onPushReactScreen(props.componentId)} } />
               <Button title='Modal react screen' onPress={ onModalReactScreen } />
