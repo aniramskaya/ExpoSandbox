@@ -39,6 +39,9 @@
     "runtimeVersion": "1.0.0",
     "updates": {
       "url": "https://u.expo.dev/9d63778b-8b38-4975-8006-7358cc83152b"
-    }
-  }
+    },
+    "sdkVersion": "51.0.0",
+    "entryPoint": ".vscode/exponentIndex.js"
+  },
+  "name": "exposandbox"
 }

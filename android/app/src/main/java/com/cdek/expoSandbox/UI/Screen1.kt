@@ -25,6 +25,7 @@ class Screen1 : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val text: String = getArguments()?.getString("text") ?: "No text provided from RN"
         return ComposeView(requireContext()).apply {
             setContent {
                 Column(
@@ -34,6 +35,10 @@ class Screen1 : Fragment() {
                     Text(
                         fontSize = 24.sp,
                         text = "Native screen 1"
+                    )
+                    Text(
+                        fontSize = 16.sp,
+                        text = text
                     )
                 }
 
