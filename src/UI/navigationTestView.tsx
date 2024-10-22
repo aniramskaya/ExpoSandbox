@@ -24,7 +24,8 @@ const navigationTestView = (
       props, 
       name,
       onPushReactScreen, onModalReactScreen, onModalInStackReactScreen, 
-      onPushNativeScreen, onModalNativeScreen, onModalInStackNativeScreen
+      onPushNativeScreen, onModalNativeScreen, onModalInStackNativeScreen,
+      onPushTextScreen
     }:
     {
         props: NavigationProps, 
@@ -34,7 +35,8 @@ const navigationTestView = (
         onModalInStackReactScreen: () => void,
         onPushNativeScreen: (_: ComponentId) => void,
         onModalNativeScreen: () => void,
-        onModalInStackNativeScreen: () => void
+        onModalInStackNativeScreen: () => void,
+        onPushTextScreen: (_: ComponentId) => void
     }
 ) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -62,6 +64,9 @@ const navigationTestView = (
               <Button title='Push native screen' onPress={ () => { onPushNativeScreen(props.componentId)} } />
               <Button title='Modal native screen' onPress={ onModalNativeScreen } />
               <Button title='Modal stack native screen' onPress={ onModalInStackNativeScreen } />
+            </View>
+            <View style = {{margin: 40}}>
+              <Button title='Open text screen' onPress={ () => { onPushTextScreen(props.componentId)} } />
             </View>
         </View>
     </View>

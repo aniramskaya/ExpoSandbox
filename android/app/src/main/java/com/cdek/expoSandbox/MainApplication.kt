@@ -3,6 +3,8 @@ package com.cdek.expoSandbox
 import android.app.Application
 import android.content.res.Configuration
 import com.cdek.expoSandbox.UI.Screen1Component
+import com.cdek.expoSandbox.UI.TextEditScreen
+import com.cdek.expoSandbox.UI.TextEditScreenComponent
 
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
@@ -51,6 +53,10 @@ class MainApplication : NavigationApplication() {
 
     registerExternalComponent("NativeScreen1") { activity, instanceManagr, props ->
       return@registerExternalComponent Screen1Component(activity, props)
+    }
+
+    registerExternalComponent("TextEditScreen") { activity, instanceManagr, props ->
+      return@registerExternalComponent TextEditScreenComponent(activity, props)
     }
 
     ApplicationLifecycleDispatcher.onApplicationCreate(this)

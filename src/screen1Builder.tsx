@@ -9,7 +9,7 @@ import { CommonButtonIds, RootRouter, RootRouterImpl } from './rootRouter';
 import navigationTestView from './UI/navigationTestView'
 import { useNavigationButtonPress } from 'react-native-navigation-hooks'
 import { Navigation } from 'react-native-navigation';
-import { urlCommand } from './Navigation/DeepLinkNavigation'
+import { urlCommand } from './Navigation/Command/DeepLinkCommandNavigation'
 
 const Screen1Builder = (props: NavigationProps) => {
   const router: RootRouter = new RootRouterImpl()
@@ -29,7 +29,8 @@ const Screen1Builder = (props: NavigationProps) => {
       onModalInStackReactScreen: () => { router.modalInStackScreen('Screen2') },
       onPushNativeScreen: (componentId) => { router.pushNativeScreen('NativeScreen1', componentId) },
       onModalNativeScreen: () => { urlCommand.execute(new URL('rnn:///native-screen-1'), {title: "Native screen 1", data: {text: "This text is passed from React Native part"}}) },
-      onModalInStackNativeScreen: () => { router.modalInStackNativeScreen('NativeScreen1') }
+      onModalInStackNativeScreen: () => { router.modalInStackNativeScreen('NativeScreen1') },
+      onPushTextScreen: (componentId) => { urlCommand.execute(new URL('rnn:///text-screen/'), {componentId: componentId}) }
     }
   )
 }

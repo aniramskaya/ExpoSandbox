@@ -1,0 +1,9 @@
+{
+  "platforms": ["ios", "tvos", "android", "web"],
+  "ios": {
+    "modules": ["RNNPassbackModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.rnn_passback.RNNPassbackModule"]
+  }
+}
