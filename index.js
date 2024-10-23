@@ -28,3 +28,4 @@ Navigation.events().registerAppLaunchedListener(async () => {
       }
     });
   });
+

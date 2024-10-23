@@ -3,6 +3,7 @@ package com.cdek.expoSandbox
 import android.app.Application
 import android.content.res.Configuration
 import com.cdek.expoSandbox.UI.Screen1Component
+import com.cdek.expoSandbox.UI.TextDisplayScreenComponent
 import com.cdek.expoSandbox.UI.TextEditScreen
 import com.cdek.expoSandbox.UI.TextEditScreenComponent
 
@@ -57,6 +58,10 @@ class MainApplication : NavigationApplication() {
 
     registerExternalComponent("TextEditScreen") { activity, instanceManagr, props ->
       return@registerExternalComponent TextEditScreenComponent(activity, props)
+    }
+
+    registerExternalComponent("NativeTextScreen") { activity, instanceManagr, props ->
+      return@registerExternalComponent TextDisplayScreenComponent(activity, props)
     }
 
     ApplicationLifecycleDispatcher.onApplicationCreate(this)

@@ -3,7 +3,7 @@ import { NativeModulesProxy, EventEmitter, Subscription } from 'expo-modules-cor
 // Import the native module. On web, it will be resolved to RNNPassback.web.ts
 // and on native platforms to RNNPassback.ts
 import RNNPassbackModule from './src/RNNPassbackModule';
-import { ScreenResultPayload, ScreenResult, ScreenError } from './src/RNNPassback.types';
+import { ScreenResultPayload, ScreenResult, ScreenError, NavigateToUrlPayload } from './src/RNNPassback.types';
 
 // Get the native constant value.
 export const PI = RNNPassbackModule.PI;
@@ -22,4 +22,12 @@ export function addScreenResultListener(listener: (event: ScreenResultPayload) =
   return emitter.addListener<ScreenResultPayload>('onScreenResult', listener);
 }
 
-export { ScreenResultPayload, ScreenResult, ScreenError };
+export function addNavigateToUrlListener(listener: (event: NavigateToUrlPayload) => void): Subscription {
+  return emitter.addListener<NavigateToUrlPayload>('onNavigateToUrl', listener);
+}
+
+export function passNavigationResult(requestId: string, result: string): void {
+  return RNNPassbackModule.passNavigationResult(requestId, result);
+}
+
+export { ScreenResultPayload, ScreenResult, ScreenError, NavigateToUrlPayload };

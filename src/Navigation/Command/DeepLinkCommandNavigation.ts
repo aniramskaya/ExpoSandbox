@@ -2,11 +2,13 @@ import NativeScreen1Navigator from "./ConcreteNavigators/NativeScreen1Navigator"
 import TextScreenNavigator from "./ConcreteNavigators/TextScreenNavigator";
 import UrlCommand from "./UrlCommand";
 import UrlCommandNavigator from "./UrlCommandNavigator";
+import NativeTextScreenNavigator from "./ConcreteNavigators/NativeTextScreenNavigator";
 
 class DeepLinkCommandNavigation implements UrlCommand {
     private readonly navigators: UrlCommandNavigator[] = [
         new NativeScreen1Navigator(),
-        new TextScreenNavigator()
+        new TextScreenNavigator(),
+        new NativeTextScreenNavigator()
     ];
 
     private next?: UrlCommand;

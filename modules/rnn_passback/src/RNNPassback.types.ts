@@ -1,12 +1,18 @@
 export type ScreenError = {
-  value: string
+  value: string;
 }
 
 export type ScreenResult = {
-  data: any
+  data: any;
 }
 
 export type ScreenResultPayload = {
   id: string;
-  status: ScreenError | ScreenResult
+  status: ScreenError | ScreenResult;
+}
+
+export type NavigateToUrlPayload = {
+  requestId: string;
+  url: string;
+  props: any;
 }

@@ -30,7 +30,8 @@ const Screen3Builder = (props: NavigationProps) => {
       onPushNativeScreen: (componentId) => { router.pushNativeScreen('NativeScreen1', componentId) },
       onModalNativeScreen: () => { router.modalNativeScreen('NativeScreen1') },
       onModalInStackNativeScreen: () => { router.modalInStackNativeScreen('NativeScreen1') },
-      onPushTextScreen: (componentId) => { urlCommand.execute(new URL('rnn:///text-screen/'), {componentId: componentId}) }
+      onPushTextScreen: (componentId) => { urlCommand.execute(new URL('rnn:///text-screen/'), {componentId: componentId}) },
+      onPushNativeTextScreen: (componentId) => { urlCommand.execute(new URL('rnn:///native-text-screen/'), {componentId: componentId}) }
     }
   )
 }
